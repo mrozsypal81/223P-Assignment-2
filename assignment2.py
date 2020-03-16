@@ -5,6 +5,10 @@
 decisionvalue = None
 
 
+def calc_poly_func(r,n,m):
+    return lambda a,x,y : (a/r)*(x**n)*(y**m)
+
+
 while decisionvalue != 4 :
     
     print('===========================================================================================')
@@ -24,6 +28,7 @@ while decisionvalue != 4 :
     
     if decisionvalue == "1":
         print("Starting Problem 1")
+        calc_poly_func(a,x,y)
     elif decisionvalue == "2":
         print("Starting Problem 2")
     elif decisionvalue == "3":
