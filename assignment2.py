@@ -19,11 +19,27 @@ def cal_poly_func(r,n,m):
         outputl.append(newlam(i,j,k))
     return outputl
 
+def moddec(func):
+    def inner(*args, **kwargs):
+
+
+        returned_value = func(*args,**kwargs)
+
+        return returned_value
+
+    return inner
+
+@moddec
 def combine_with_list(list_obj,list2_obj):
     print("doing combine lists ")
 
+    return list_obj + list2_obj
+@moddec
 def combine_with_set(list_obj,set_obj):
     print("doing combine set with list ")
+    newlist = list(set_obj)
+    
+    return list_obj + newlist
 
     
 
@@ -65,6 +81,28 @@ while decisionvalue != 4 :
 
     elif decisionvalue == "2":
         print("Starting Problem 2")
+        
+        while decisionvalue != 1 or decisionvalue != 2 or decisionvalue != 3:
+            print("If you would like to combine two lists press 1 ")
+            print("If you would like to combine a list and a set press 2 ")
+            print("If you would like to cancel press 3 ")
+
+            decisionvalue = input("Please enter input now ")
+    
+        if decisionvalue == "1":
+            l1 = list(map(str,input("Enter values for the first list: ").split()))
+            l2 = list(map(str,input("Enter values for the second list: ").split()))
+            newlist = combine_with_list(l1,l2)
+            print(newlist)
+
+        elif decisionvalue == "2":
+            l1 = list(map(str,input("Enter values for the list: ").split()))
+            s1 = set(map(str,input("Enter values for the set: ").split()))
+            newlist = combine_with_set(l1,s1)
+            print(newlist)
+        elif decisionvalue == "3":
+            print("Cancelled going back to main menu ")
+
     elif decisionvalue == "3":
         print("Starting Problem 3")
     elif decisionvalue == "4":
