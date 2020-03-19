@@ -22,8 +22,20 @@ def cal_poly_func(r,n,m):
 def moddec(func):
     def inner(*args, **kwargs):
 
+        for arg in args:
+            if type(arg).__name__ == "set":
+                newlist = list(arg)
+            for i in arg:
+                if type(i).__name__ == "string":
+                    try:
+                        if 4 > float(i):
+                            
+                    except ValueError:
+                            print("That is not a number ")
+                
 
-        returned_value = func(*args,**kwargs)
+
+        returned_value = func(newlist,*args,**kwargs)
 
         return returned_value
 
@@ -38,7 +50,7 @@ def combine_with_list(list_obj,list2_obj):
 def combine_with_set(list_obj,set_obj):
     print("doing combine set with list ")
     newlist = list(set_obj)
-    
+
     return list_obj + newlist
 
     
