@@ -1,5 +1,7 @@
 #Assignment 2 by Michael Rozsypal
 #Problem 1 Python Lambda Function
+#Problem 2 Python Decorator Implementation
+#Problem 3 Using Assignemnt 1 but reading in file
 
 import itertools
 import functools
@@ -33,7 +35,8 @@ def ClassCWID(studententry):
 
 
 
-#This function creates new student entries on the maintable
+#This function creates new student entries on the maintable by reading in from file
+#The file format must have each piece of info spaced apart 
 def addentryfunc():
     fileopen = input("Please input the file name and extension that you wish to open now ")
     with open(fileopen,'r') as f:
@@ -41,27 +44,29 @@ def addentryfunc():
             x = 0
             newstudent = {}
             for word in line.split():
+                #print(word)
                 if x == 0:
                     newstudent.update({'CWID':word})
                     x += 1
-                if x == 1:
+                elif x == 1:
                     newstudent.update({'First_Name':word})
                     x += 1
-                if x == 2:
+                elif x == 2:
                     newstudent.update({'Last_Name':word})
                     x += 1
-                if x == 3:
+                elif x == 3:
                     newstudent.update({'Gender':word})
                     x += 1
-                if x == 4:
+                elif x == 4:
                     newstudent.update({'DOB':word})
                     x += 1
-                if x == 5:
+                elif x == 5:
                     newstudent.update({'ClassID':word})
                     x += 1
-                if x == 6:
+                elif x == 6:
                     newstudent.update({'Grade':word})
                     x += 1
+            #print(newstudent)
             Maintable.append(newstudent)
             ClassCWID(newstudent)
 
@@ -81,11 +86,12 @@ def printentriesfunc():
                     print('CWID: '+ setvalue+' First Name '+x['First_Name']+' Last Name '+x['Last_Name'])
     print('===========================================================================================')
 
-
+#this is the lambda function that does the math on each index in the lists
 def lambdafunc(r,n,m):
 
     return lambda a,x,y : (a/r)*(x**n)*(y**m)
 
+#This function takes in constants and passes them into the lambda function
 def cal_poly_func(r,n,m):
     outputl = []
     newlam = lambdafunc(r,n,m)
@@ -93,6 +99,8 @@ def cal_poly_func(r,n,m):
         outputl.append(newlam(i,j,k))
     return outputl
 
+#This is the decorator that modifies any call to combine_with_list and combine_with_set
+#it does the appropriate functions according to the assignment2 documentation
 def moddec(func):
     def inner(obj1,obj2):
         newlist1 = []
@@ -140,11 +148,14 @@ def moddec(func):
 
     return inner
 
+#declaring the decorator for this function
 @moddec
 def combine_with_list(list_obj,list2_obj):
     #print("doing combine lists ")
 
     return list_obj + list2_obj
+    
+#declaring the decorator for this function    
 @moddec
 def combine_with_set(list_obj,set_obj):
     #print("doing combine set with list ")
@@ -154,7 +165,7 @@ def combine_with_set(list_obj,set_obj):
 
     
 
-
+#This is the main decision making UI for the program
 while decisionvalue != 4 :
     
     print('===========================================================================================')
@@ -176,10 +187,12 @@ while decisionvalue != 4 :
         print("Starting Problem 1")
         r,n,m = input("Enter three values with spaces inbetween for constants ").split()
 
+        #these are the constants passed by user
         r = int(r,10)
         n = int(n,10)
         m = int(m,10)
 
+        #these are the lists passed by user
         a = list(map(int,input("Enter values for the first list a: ").split()))
         x = list(map(int,input("Enter values for the second list x: ").split()))
         y = list(map(int,input("Enter values for the third list y: ").split()))
@@ -202,22 +215,26 @@ while decisionvalue != 4 :
 
             decisionvalue = input("Please enter input now ")
     
+        #This is for combining two lists
         if decisionvalue == "1":
             l1 = list(map(str,input("Enter values for the first list: ").split()))
             l2 = list(map(str,input("Enter values for the second list: ").split()))
             newlist = combine_with_list(l1,l2)
             print(newlist)
 
+        #This is for combining a list and a set
         elif decisionvalue == "2":
+            print('===========================================================================================')
             l1 = list(map(str,input("Enter values for the list: ").split()))
             s1 = set(map(str,input("Enter values for the set: ").split()))
+            print('===========================================================================================')
             newlist = combine_with_set(l1,s1)
             print(newlist)
         elif decisionvalue == "3":
             print("Cancelled going back to main menu ")
 
     elif decisionvalue == "3":
-        print("Starting Problem 3")
+        #print("Starting Problem 3")
         addentryfunc()
         printentriesfunc()
     elif decisionvalue == "4":
