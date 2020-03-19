@@ -24,22 +24,38 @@ def moddec(func):
         newlist1 = []
         newlist2 = []
         for i in obj1:
-            print(type(i).__name__)
+            #print(type(i).__name__)
             if type(i).__name__ == "str":
                 if i.isdigit() and float(i) >= 4:
+                   # print("adding a number to l1")
                     newlist1.append(i)
-                elif ((i.startswith('-') and i[1:].isdigit()) == False) and float(i) >= 4:
-                    newlist1 + (i.split(','))
-            if type(i).__name__ == "int":
+                elif ((i.startswith('-') and i[1:].isdigit()) == False) and (i.isdigit() == False):
+                    #print("adding a string split list to l1")
+                    temp = i
+                    temp = (temp.split(','))
+                    for x in temp:
+                        newlist1.append(x)
+                #elif ((i.startswith('-') and i[1:].isdigit()) == False) and (i.isdigit() == False):
+                    #print("adding a string to l1")
+                    #newlist1.append(i)
+            #if type(i).__name__ == "int":
                 if i >= 4:
                     newlist1.append(i)
         for i in obj2:
-            print(type(i).__name__)
+            #print(type(i).__name__)
             if type(i).__name__ == "str":
                 if i.isdigit() and float(i) >= 4:
+                    #print("adding a number to l2")
                     newlist2.append(i)
-                elif ((i.startswith('-') and i[1:].isdigit()) == False) and float(i) >= 4:
-                    newlist2 + (i.split(','))
+                elif ((i.startswith('-') and i[1:].isdigit()) == False) and (i.isdigit() == False):
+                    #print("adding a string split list to l2")
+                    temp = i
+                    temp = (temp.split(','))
+                    for x in temp:
+                        newlist2.append(x)
+                #elif ((i.startswith('-') and i[1:].isdigit()) == False) and (i.isdigit() == False):
+                    #print("adding a string to l2")
+                    #newlist2.append(i)
             if type(i).__name__ == "int":
                 if i >= 4:
                     newlist2.append(i)
@@ -52,12 +68,12 @@ def moddec(func):
 
 @moddec
 def combine_with_list(list_obj,list2_obj):
-    print("doing combine lists ")
+    #print("doing combine lists ")
 
     return list_obj + list2_obj
 @moddec
 def combine_with_set(list_obj,set_obj):
-    print("doing combine set with list ")
+    #print("doing combine set with list ")
     newlist = list(set_obj)
 
     return list_obj + newlist
@@ -102,12 +118,14 @@ while decisionvalue != 4 :
 
     elif decisionvalue == "2":
         print("Starting Problem 2")
-        
-        while decisionvalue != 1 or decisionvalue != 2 or decisionvalue != 3:
+        decisionvalue = "0"
+        while decisionvalue != "1" and decisionvalue != "2" and decisionvalue != "3":
+            print('===========================================================================================')
             print("If you would like to combine two lists press 1 ")
             print("If you would like to combine a list and a set press 2 ")
             print("If you would like to cancel press 3 ")
-
+            print('===========================================================================================')
+            
             decisionvalue = input("Please enter input now ")
     
         if decisionvalue == "1":
