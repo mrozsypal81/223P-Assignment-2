@@ -35,26 +35,38 @@ def ClassCWID(studententry):
 
 #This function creates new student entries on the maintable
 def addentryfunc():
-    entryamount = int(input('Please enter the amount of students you wish to add '),10)
+    fileopen = input("Please input the file name and extension that you wish to open now ")
+    with open(fileopen,'r') as f:
+        for line in f:
+            x = 0
+            newstudent = {}
+            for word in line.split():
+                if x == 0:
+                    newstudent.update({'CWID':word})
+                    x += 1
+                if x == 1:
+                    newstudent.update({'First_Name':word})
+                    x += 1
+                if x == 2:
+                    newstudent.update({'Last_Name':word})
+                    x += 1
+                if x == 3:
+                    newstudent.update({'Gender':word})
+                    x += 1
+                if x == 4:
+                    newstudent.update({'DOB':word})
+                    x += 1
+                if x == 5:
+                    newstudent.update({'ClassID':word})
+                    x += 1
+                if x == 6:
+                    newstudent.update({'Grade':word})
+                    x += 1
+            Maintable.append(newstudent)
+            ClassCWID(newstudent)
 
-    for x in range(len(Maintable),len(Maintable)+entryamount):
-        print('Please enter Data for student')
-        uinput = input('Please enter the students CWID ')
-        Maintable.append({'CWID':uinput})
-        uinput = input('Please enter the students First Name ')
-        Maintable[x].update({'First_Name':uinput})
-        uinput = input('Please enter the students Last Name ')
-        Maintable[x].update({'Last_Name':uinput})
-        uinput = input('Please enter the students Gender ')
-        Maintable[x].update({'Gender':uinput})
-        uinput = input('Please enter the students Date of Birth ')
-        Maintable[x].update({'DOB':uinput})
-        uinput = input('Please enter the students ClassID ')
-        Maintable[x].update({'ClassID':uinput})
-        uinput = input('Please enter the students Grade ')
-        Maintable[x].update({'Grade':uinput})
-        print('The Student Entry has been added ')
-        ClassCWID(Maintable[x])
+                
+
 
 
 
