@@ -120,7 +120,7 @@ def moddec(func):
                 #elif ((i.startswith('-') and i[1:].isdigit()) == False) and (i.isdigit() == False):
                     #print("adding a string to l1")
                     #newlist1.append(i)
-            #if type(i).__name__ == "int":
+            if type(i).__name__ == "int":
                 if i >= 4:
                     newlist1.append(i)
         for i in obj2:
@@ -166,7 +166,7 @@ def combine_with_set(list_obj,set_obj):
     
 
 #This is the main decision making UI for the program
-while decisionvalue != 4 :
+while decisionvalue != '4' :
     
     print('===========================================================================================')
     print('')
@@ -220,7 +220,7 @@ while decisionvalue != 4 :
             l1 = list(map(str,input("Enter values for the first list: ").split()))
             l2 = list(map(str,input("Enter values for the second list: ").split()))
             newlist = combine_with_list(l1,l2)
-            print(newlist)
+            print("This is the new list that was made by after the combination ",newlist)
 
         #This is for combining a list and a set
         elif decisionvalue == "2":
@@ -229,12 +229,12 @@ while decisionvalue != 4 :
             s1 = set(map(str,input("Enter values for the set: ").split()))
             print('===========================================================================================')
             newlist = combine_with_set(l1,s1)
-            print(newlist)
+            print("This is the new list that was made by after the combination ",newlist)
         elif decisionvalue == "3":
             print("Cancelled going back to main menu ")
 
     elif decisionvalue == "3":
-        #print("Starting Problem 3")
+        print("Starting Problem 3")
         addentryfunc()
         printentriesfunc()
     elif decisionvalue == "4":
