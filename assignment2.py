@@ -20,22 +20,31 @@ def cal_poly_func(r,n,m):
     return outputl
 
 def moddec(func):
-    def inner(*args, **kwargs):
-
-        for arg in args:
-            if type(arg).__name__ == "set":
-                newlist = list(arg)
-            for i in arg:
-                if type(i).__name__ == "string":
-                    try:
-                        if 4 > float(i):
-                            
-                    except ValueError:
-                            print("That is not a number ")
-                
-
-
-        returned_value = func(newlist,*args,**kwargs)
+    def inner(obj1,obj2):
+        newlist1 = []
+        newlist2 = []
+        for i in obj1:
+            print(type(i).__name__)
+            if type(i).__name__ == "str":
+                if i.isdigit() and float(i) >= 4:
+                    newlist1.append(i)
+                elif ((i.startswith('-') and i[1:].isdigit()) == False) and float(i) >= 4:
+                    newlist1 + (i.split(','))
+            if type(i).__name__ == "int":
+                if i >= 4:
+                    newlist1.append(i)
+        for i in obj2:
+            print(type(i).__name__)
+            if type(i).__name__ == "str":
+                if i.isdigit() and float(i) >= 4:
+                    newlist2.append(i)
+                elif ((i.startswith('-') and i[1:].isdigit()) == False) and float(i) >= 4:
+                    newlist2 + (i.split(','))
+            if type(i).__name__ == "int":
+                if i >= 4:
+                    newlist2.append(i)
+            
+        returned_value = func(newlist1,newlist2)
 
         return returned_value
 
